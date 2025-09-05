@@ -5,6 +5,11 @@
     <div class="hgroup">
       <h1>Landon Hotel</h1>
       <h2>London, Ontario</h2>
+      <h3 style="color: burlywood; accent-color: black"> *******************************************************</h3>
+      <h4 *ngFor="let messge of welcomeMessages" style="color: #671d1d;text-align: center;background: floralwhite; accent-color: black">
+        {{messge}}
+      </h4>
+      <h5 style="color: burlywood; accent-color : black"> *******************************************************</h5>
       <p><a href="/#welcome"><img src="assets/images/arrow.png" alt="down arrow"></a></p>
     </div>
   </article>
@@ -22,9 +27,14 @@
 <main id="wrapper">
   <div class="scene" id="welcome">
     <article class="content">
-
- 
-
+      <div class="row">
+        <div class="col-12" *ngIf="liveTimeframes && liveTimeframes.length >= 3">
+          <p style="font-size: xx-large; color: #671d1d; text-align: center"><strong>Don't forget to drop in on  our live seminar tonight!</strong> </p><br/>
+          <p><strong> {{liveTimeframes[0]}}</strong></p>
+          <p><strong> {{liveTimeframes[1]}}</strong></p>
+          <p><strong> {{liveTimeframes[2]}}</strong></p><br/>
+        </div>
+      </div>
       <div class="row">
         <div class=""col-12>
           <div class="gallery">
@@ -36,7 +46,7 @@
           </div>
           <h1>Book a Room</h1>
           <form class="form-horizontal" [formGroup]="roomsearch"
-          (ngSubmit)="onSubmit(roomsearch)">
+                (ngSubmit)="onSubmit(roomsearch)">
 
             <div class="form-group">
               <label for="checkin" class="col-4">Check-In:</label>
@@ -58,7 +68,7 @@
               </div>
               </form>
 
-        
+
         </div>
       </div>
 
@@ -75,7 +85,11 @@
                 </td>
                 <td>
                   <strong>Room #: {{room.roomNumber}}</strong><br/>
-                  <strong>Price: ${{room.price}}</strong>
+                  <strong>PRICES </strong><br/>
+                  <strong>----------------</strong><br/>
+                  <strong> ${{room.price}}</strong><br/>
+                  <strong>       €{{room.price}}</strong><br/>
+                  <strong>       C${{room.price}}</strong>
                 </td>
                 <td>
                   <button type="submit" class="btn btn-primary" (click)="reserveRoom(room.id)">Reserve</button>

@@ -8,12 +8,15 @@ import {map} from "rxjs/operators";
 
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+
+  presentationTimes$!: Observable<string>
 
   constructor(private httpClient:HttpClient){}
 
@@ -27,24 +30,34 @@ export class AppComponent implements OnInit{
   request!:ReserveRoomRequest;
   currentCheckInVal!:string;
   currentCheckOutVal!:string;
+  welcomeMessages!:string[];
+  liveTimeframes!:string[];
 
-    ngOnInit(){
-      this.roomsearch= new FormGroup({
+    ngOnInit() {
+      this.roomsearch = new FormGroup({
         checkin: new FormControl(' '),
         checkout: new FormControl(' ')
       });
 
- //     this.rooms=ROOMS;
+      //     this.rooms=ROOMS;
 
 
-    const roomsearchValueChanges$ = this.roomsearch.valueChanges;
+      const roomsearchValueChanges$ = this.roomsearch.valueChanges;
 
-    // subscribe to the stream
-    roomsearchValueChanges$.subscribe(x => {
-      this.currentCheckInVal = x.checkin;
-      this.currentCheckOutVal = x.checkout;
-    });
-  }
+      // subscribe to the stream
+      roomsearchValueChanges$.subscribe(x => {
+        this.currentCheckInVal = x.checkin;
+        this.currentCheckOutVal = x.checkout;
+      });
+
+        this.getWelcomeMessages().subscribe(
+          messages => {this.welcomeMessages=messages;}
+        )
+        this.getPresentationTimes().subscribe(
+        times => {this.liveTimeframes=times;}
+      )
+
+    }
 
     onSubmit({value,valid}:{value:Roomsearch,valid:boolean}){
       this.getAll().subscribe(
@@ -83,7 +96,18 @@ export class AppComponent implements OnInit{
        return this.httpClient.get(this.baseURL + '/room/reservation/v1?checkin='+ this.currentCheckInVal + '&checkout='+this.currentCheckOutVal, {responseType: 'json'});
     }
 
+  getWelcomeMessages(): Observable<any> {
+    return this.httpClient.get(this.baseURL + '/api/welcome', {responseType: 'json'});
   }
+  getPresentationTimes(): Observable<any> {
+    return this.httpClient.get(this.baseURL + '/time/presentation', {responseType: 'json'});
+  }
+
+
+}
+
+
+
 
 
 
