@@ -15,7 +15,7 @@ B3: Added features for all timezones and made sure that message for live seminar
 C1: Created a Dockerfile for the purpose of image usage
 
 C2: Picture of the application running from a container
-![alt text](C3_PIC.PNG)
+![alt text](Container_Pic.PNG)
 
 C3: How I would deploy to the cloud
 1. First, I would decide on whether I would use AWS or Azure as my cloud provider.
@@ -23,3 +23,8 @@ C3: How I would deploy to the cloud
 3. After creating the necessary groups and names I would make sure my image source
 is from Docker Hub.
 4. Afterwards I would deploy the container instance from Azure to make sure that its live and working.
+
+Additional Pushes 
+- Added "Sleep" To WelcomeController.Java in B1 Requirements to Ensure that both messages popped up at the same time.
+- Altered README.md to show updated picture of container and localhost working
+- Added correct PNG and removed old one

@@ -37,7 +37,7 @@ public class WelcomeController {
             list.add(welcomeFR.getWelcomeMessage());
             System.out.println("French Message Received");
         });
-
+        try {Thread.sleep(750); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
         return ResponseEntity.ok(list);
     }
 
