@@ -26,9 +26,14 @@
 <main id="wrapper">
   <div class="scene" id="welcome">
     <article class="content">
-
-
-
+      <div class="row">
+        <div class="col-12" *ngIf="liveTimeframes && liveTimeframes.length >= 3">
+          <p style="font-size: xx-large; color: #671d1d; text-align: center"><strong>Don't forget to drop in on  our live seminar tonight!</strong> </p><br/>
+          <p><strong> {{liveTimeframes[0]}}</strong></p>
+          <p><strong> {{liveTimeframes[1]}}</strong></p>
+          <p><strong> {{liveTimeframes[2]}}</strong></p><br/>
+        </div>
+      </div>
       <div class="row">
         <div class=""col-12>
           <div class="gallery">

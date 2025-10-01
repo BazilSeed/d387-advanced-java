@@ -16,6 +16,8 @@ import {map} from "rxjs/operators";
 })
 export class AppComponent implements OnInit {
 
+  presentationTimes$!: Observable<string>
+
   constructor(private httpClient: HttpClient) {
   }
 
@@ -30,7 +32,7 @@ export class AppComponent implements OnInit {
   currentCheckInVal!: string;
   currentCheckOutVal!: string;
   welcomeMessages!: string[];
-
+  liveTimeframes!:string[];
 
   ngOnInit() {
     this.roomsearch = new FormGroup({
@@ -51,8 +53,10 @@ export class AppComponent implements OnInit {
 
     this.getWelcomeMessages().subscribe(
       messages => {
-        this.welcomeMessages = messages;
-      }
+        this.welcomeMessages = messages;}
+    )
+    this.getPresentationTimes().subscribe(
+      times => {this.liveTimeframes=times;}
     )
   }
 
@@ -98,8 +102,9 @@ export class AppComponent implements OnInit {
   getWelcomeMessages(): Observable<any> {
     return this.httpClient.get(this.baseURL + '/api/welcome', {responseType: 'json'});
   }
-
-
+  getPresentationTimes(): Observable<any> {
+    return this.httpClient.get(this.baseURL + '/time/presentation', {responseType: 'json'});
+  }
 }
 
 
