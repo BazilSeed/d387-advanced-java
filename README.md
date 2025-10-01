@@ -15,7 +15,7 @@ B3: Added features for all timezones and made sure that message for live seminar
 C1: Created a Dockerfile for the purpose of image usage
 
 C2: Picture of the application running from a container
-![alt text](C4.PNG)
+![alt text](C3_PIC.PNG)
 
 C3: How I would deploy to the cloud
 1. First, I would decide on whether I would use AWS or Azure as my cloud provider.
